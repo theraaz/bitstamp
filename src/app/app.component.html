@@ -1,0 +1,64 @@
+<div class="text-center">
+<div style="text-align:center">
+  <h1>
+    Bitstamp Ticker
+  </h1>
+</div>
+<div>
+  <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
+    <div class="row">
+      <label for="ticker">Select Currency Pair</label>
+      <select class="custom-select" id="ticker" name="ticker" (change)="onPairSelect($event.target.value)">
+        <option [value]="aPair.value" *ngFor="let aPair of availablePairs">{{aPair.name}}</option>
+      </select>
+    </div>
+    <div class="row" style="padding: 10px 0">
+      <div class="col-sm-2" style="border-right:1px solid #000"><h3>{{pair || 'ethusd'}}</h3></div>
+      <div class="col-sm-10">
+        <table class="table table-hover" *ngIf="!processing && ticker?.high">
+          <tbody>
+          <tr>
+            <th>High</th>
+            <td>{{ticker.high}}</td>
+          </tr>
+          <tr>
+            <th>Low</th>
+            <td>{{ticker.low}}</td>
+          </tr>
+          <tr>
+            <th>Last</th>
+            <td>{{ticker.last}}</td>
+          </tr>
+          <tr>
+            <th>Timestamp</th>
+            <td>{{ticker.timestamp}}</td>
+          </tr>
+          <tr>
+            <th>Bid</th>
+            <td>{{ticker.bid}}</td>
+          </tr>
+          <tr>
+            <th>Vwap</th>
+            <td>{{ticker.vwap}}</td>
+          </tr>
+          <tr>
+            <th>Volume</th>
+            <td>{{ticker.volume}}</td>
+          </tr>
+          <tr>
+            <th>Ask</th>
+            <td>{{ticker.ask}}</td>
+          </tr>
+          <tr>
+            <th>Open</th>
+            <td>{{ticker.open}}</td>
+          </tr>
+          </tbody>
+        </table>
+        <i *ngIf="processing">Loading...</i>
+        <i *ngIf="!processing && !ticker?.high">No response received from Bitstamp. Please try again later</i>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
